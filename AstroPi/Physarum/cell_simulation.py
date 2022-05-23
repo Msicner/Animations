@@ -57,6 +57,7 @@ class CellSimulation:
 
     def update_simulation():
         for cell in CELLS:
-            CellSimulation.rotate_cell(cell)
+            CellSimulation.add_polar_vector(cell.position_x, cell.position_y, cell.rotation, SPEED)  # Moving the cell
+            CellSimulation.rotate_cell(cell)  # Rotating the cell
         VisualMap.update_map()
         

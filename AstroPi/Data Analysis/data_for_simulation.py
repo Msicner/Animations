@@ -1,17 +1,30 @@
 import csv
 
-filename = "C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Sample Data\\sample_data_izzy.csv"
+sensors_file = "C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Sample Data\\sample_data_izzy.csv"
+photos_file = "C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Sample Data\\LUT_cmpi_1.csv"
 
-fields = []
-rows = []
+measurements = []
 
-with open(filename, "r") as csvfile:
+class Measurement:
+    def __init__(self,data: list):
+        self.index = data[0]
+        self.temperature = data[2]
+        self.humidity = data[4]
+        self.pressure = data[5]
+
+        measurements.append(self)
+
+with open(sensors_file, "r") as csvfile:
+    fields = []
+
     cvsreader = csv.reader(csvfile)
 
     fields = next(cvsreader)
 
     for row in cvsreader:
-        rows.append(row)
+        Measurement(row)
+    
+    print(len(measurements))
 
 def get_avg(column_number: int) -> float:
     global rows
@@ -25,12 +38,11 @@ def get_avg(column_number: int) -> float:
 
     return avg
 
-print(fields)
-print(len(rows))
+""" print(fields)
 
 averages = {}
 for column in range(1, len(fields) - 2):
     avg_value = get_avg(column)
     averages.update([(fields[column], avg_value)])
 
-print(averages)
+print(averages) """
