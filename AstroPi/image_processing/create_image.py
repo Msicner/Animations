@@ -40,7 +40,7 @@ def create_photos(data: List[List[str]]) -> None:
         print(photo_index)
         photo = Photo(f'frame_{photo_index+1}.png')
         # ---- SETTING VALUES OF EACH PIXEL ----
-        for row in lines[1:]:
+        for row in data[1:]:
             # - reformating string rgb values to List -
             values = row[photo_index+1]
             values = values[1:values.find(')')]
@@ -51,3 +51,6 @@ def create_photos(data: List[List[str]]) -> None:
         
         # ---- SAVING THE IMAGE ----
         photo.save()
+
+data = get_data()
+create_photos(data)
