@@ -7,10 +7,10 @@ import csv
 
 np = numpy
 table = {}
-FOLDER = '/home/martin/Documents/programování/astropi2021/postpro/Animations/AstroPi/image_processing/' #REPLACE PATH TO HOME FOLDER
-PHOTO_NUMBERS = ['1', '2', '3', '4'] # REPLACE WITH NUMBERS OF PHOTOS
-FILE_NAME = 'frame_xxxx.png' # REPLACE WITH NAME OF THE FILE. LEAVE THE "xxxx" AT THE PLACE WHERE IS CHANGED NUBERS OF FILES.
-FRAME_COUNT = 4
+FOLDER = 'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Physarum\\' #REPLACE PATH TO HOME FOLDER
+PHOTO_NUMBERS = ['1'] # REPLACE WITH NUMBERS OF PHOTOS
+FILE_NAME = 'frame_xxxx.jpg' # REPLACE WITH NAME OF THE FILE. LEAVE THE "xxxx" AT THE PLACE WHERE IS CHANGED NUBERS OF FILES.
+FRAME_COUNT = 1
 
 
 
@@ -43,7 +43,7 @@ for image_index in PHOTO_NUMBERS:
     add_image_to_table(data)
 
 
-with open(FOLDER + 'pixels_for_matýsek.csv', 'w', buffering=1) as file:
+with open(FOLDER + 'pixels_for_matýsek.csv', 'w', buffering=1, newline='') as file:
     writer = csv.writer(file)
     header = ['pixels y x']
     for frame in range(1, FRAME_COUNT + 1):
