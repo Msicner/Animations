@@ -1,9 +1,7 @@
 import csv
-from email import header
+import numpy as np
 
 from constants import CSV_FILE_PATH, VSIM_NUM_ROWS, VSIM_NUM_COLUMNS, RGB_IN_CSV
-
-data_table = []
 
 sample_visual_map = [[0.76, 0.56], [0.24, 0.29]]
 
@@ -23,7 +21,10 @@ class CSVFileWriter:
                         row_data.append('(255)')
                     writer.writerow(row_data)
     
-    def save_data_to_csv(visual_map_data):
+    def save_data_to_csv(vsim_grid):
+        data_table = []
+        num_rows = np.shape(vsim_grid)[0]
+        num_columns = np.shape(vsim_grid)[1]
         with open(CSV_FILE_PATH) as csvfile:
             """Reading the data from the CSV file"""
             reader = csv.reader(csvfile)
@@ -35,9 +36,9 @@ class CSVFileWriter:
             string = string[0] + str(time)
             data_table[0].append(string)
             position = 1
-            for row in range(len(visual_map_data)):
-                for column in range(len(visual_map_data[row])):   
-                    pixel_value = round(visual_map_data[row][column] * 255, 2)
+            for row in range(num_rows):
+                for column in range(num_columns):   
+                    pixel_value = round(vsim_grid[row, column] * 255, 2)
                     if RGB_IN_CSV == True:  # If you want to colorize pixels
                         append_value = f'({pixel_value}, {pixel_value}, {pixel_value})'
                     else:

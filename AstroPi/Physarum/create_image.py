@@ -32,7 +32,7 @@ def get_data() -> List[List[str]]:
 
 def create_photos(data: List[List[str]]) -> None:
     """ Saves multiple photos from list """
-    for photo_index in range(FRAMES_COUNT):
+    for photo_index in range(FRAMES_COUNT + 1):
         photo = Photo(f'frame_{photo_index+1}.png')
         # ---- SETTING VALUES OF EACH PIXEL ----
         for row in data[1:]:

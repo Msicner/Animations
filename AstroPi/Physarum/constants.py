@@ -12,9 +12,9 @@ SENSOR_DISTANCE: int = 10
 SENSOR_ANGLE: int = 45
 
 # Visual simulation
-VSIM_GRID: list  = []
-VSIM_NUM_ROWS: int = 200
-VSIM_NUM_COLUMNS: int = 200
+# VSIM_GRID: list  = []
+VSIM_NUM_ROWS: int = 20
+VSIM_NUM_COLUMNS: int = 20
 VSIM_CELL_WEIGHT: float = 0.05
 RGB_IN_CSV: bool = False
 
