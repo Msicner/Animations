@@ -2,21 +2,23 @@ CSV_FILE_PATH: str = 'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\An
 
 # Constants of cells
 CELLS: list = []
-NUM_CELLS: int = 1000
+NUM_CELLS: int = 6000
 
 # Simulation dimensions
 SIM_WIDTH: int = 200
 SIM_HEIGHT: int = 200
-SPEED: float = 5.0
-SENSOR_DISTANCE: int = 10
-SENSOR_ANGLE: int = 45
+SPEED: float = 1.0
+SENSOR_DISTANCE: float = 9
+SENSOR_ANGLE: float = 22.5  # Smaller angle → doing dots more likely than streams
+ROTATE_ANGLE: int = 30
 
 # Visual simulation
-# VSIM_GRID: list  = []
-VSIM_NUM_ROWS: int = 20
-VSIM_NUM_COLUMNS: int = 20
-VSIM_CELL_WEIGHT: float = 0.05
+VSIM_NUM_ROWS: int = 200
+VSIM_NUM_COLUMNS: int = 200
+VSIM_CELL_WEIGHT: float = 0.1
+VSIM_LIFETIME: float = 5.0  # Describes how many frames you can see the cell in vsim_grid
+VSIM_DECAY: float = VSIM_CELL_WEIGHT / VSIM_LIFETIME
 RGB_IN_CSV: bool = False
 
 # Visualization
-FRAMES_COUNT: int = 2  # Don't try to increase it, it will freeze your computer completely
+FRAMES_COUNT: int = 500

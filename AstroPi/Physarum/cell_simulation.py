@@ -7,9 +7,17 @@ from constants import *
 
 class CellSimulation:
     def add_polar_vector(position_x, position_y, angle, distance):
-        position_x += abs(sin(angle) * distance)
-        position_y += abs(cos(angle) * distance)
-        return min(position_x, SIM_WIDTH - 1), min(position_y, SIM_HEIGHT - 1)
+        position_x = position_x + cos(angle) * distance
+        position_y = position_y + sin(angle) * distance
+        if position_x > SIM_WIDTH:
+            position_x = position_x - SIM_WIDTH
+        elif position_x < 0:
+            position_x = position_x + SIM_WIDTH
+        if position_y > SIM_HEIGHT:
+            position_y = position_y - SIM_HEIGHT
+        elif position_y < 0:
+            position_y = position_y + SIM_HEIGHT
+        return position_x, position_y
     
     def check_angle_value(angle):
         """Check whether the angle value is in the interval (0; 360)"""
@@ -43,22 +51,23 @@ class CellSimulation:
             SENSOR_DISTANCE)
         right_sensor_value = VisualMap.get_square_value(right_sensor_position_x, right_sensor_position_y, vsim_grid)
 
-        if right_sensor_value == left_sensor_value or left_sensor_value == front_sensor_value or right_sensor_value == front_sensor_value:
-            self.rotation = CellSimulation.check_angle_value(self.rotation + randrange(-45, 45))  # Some sensors has the same value
+        if right_sensor_value == left_sensor_value:
+            self.rotation = CellSimulation.check_angle_value(self.rotation + randrange(-ROTATE_ANGLE, ROTATE_ANGLE))  # Some sensors has the same value
         elif front_sensor_value > right_sensor_value:
             if front_sensor_value > left_sensor_value:
                 self.rotation += 0  # Front sensor has greatest value
             elif front_sensor_value < left_sensor_value:    
-                self.rotation = CellSimulation.check_angle_value(self.rotation + 45) # Left sensor has greatest value
+                self.rotation = CellSimulation.check_angle_value(self.rotation + ROTATE_ANGLE) # Left sensor has greatest value
         elif right_sensor_value > left_sensor_value:
-            self.rotation = CellSimulation.check_angle_value(self.rotation - 45) # Right sensor has the greatest value
+            self.rotation = CellSimulation.check_angle_value(self.rotation - ROTATE_ANGLE) # Right sensor has the greatest value
         elif left_sensor_value > front_sensor_value:
-            self.rotation = CellSimulation.check_angle_value(self.rotation + 45)  # Left sensor has greatest value
+            self.rotation = CellSimulation.check_angle_value(self.rotation + ROTATE_ANGLE)  # Left sensor has greatest value
 
-    def update_simulation(vsim_grid):
+    def update_simulation(vsim_grid, photo_index):
         for cell in CELLS:
             cell.position_x, cell.position_y = CellSimulation.add_polar_vector(cell.position_x, cell.position_y, cell.rotation, SPEED)  # Moving the cell
+        for cell in CELLS:
             CellSimulation.rotate_cell(cell, vsim_grid)  # Rotating the cell
-        vsim_grid = VisualMap.update_map(vsim_grid)
+        vsim_grid = VisualMap.update_map(vsim_grid, photo_index)
         return vsim_grid
         

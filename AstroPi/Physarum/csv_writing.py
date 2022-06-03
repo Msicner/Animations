@@ -21,7 +21,8 @@ class CSVFileWriter:
                         row_data.append('(255)')
                     writer.writerow(row_data)
     
-    def save_data_to_csv(vsim_grid):
+    def save_data_to_csv(vsim_grid, photo_index):  # photo_index expects to get data in a form of (bool, int)
+        """Saves data to csv file"""
         data_table = []
         num_rows = np.shape(vsim_grid)[0]
         num_columns = np.shape(vsim_grid)[1]
@@ -31,10 +32,15 @@ class CSVFileWriter:
             for row in reader:
                 data_table.append(row)      
             """Updating the lines"""
+            # Updating header
             string = data_table[0][-1]
-            time = int(string[1:]) + 1
+            if photo_index[0] == False:  # If you don't specify the frame number
+                time = int(string[1:]) + 1
+            elif photo_index[0] == True:  # If you do specify the frame number
+                time = photo_index[1]
             string = string[0] + str(time)
             data_table[0].append(string)
+            # Updating data representing visual map
             position = 1
             for row in range(num_rows):
                 for column in range(num_columns):   

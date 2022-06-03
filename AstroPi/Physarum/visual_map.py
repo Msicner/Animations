@@ -8,6 +8,12 @@ class VisualMap:
         vsim_grid = np.zeros((VSIM_NUM_ROWS, VSIM_NUM_COLUMNS))
         return vsim_grid
 
+    def decay(vsim_grid):
+        """Decreases value of every single square in vsim_grid"""
+        vsim_grid = vsim_grid - VSIM_DECAY
+        vsim_grid = np.clip(vsim_grid, 0, 1)
+        return vsim_grid
+
     def get_square(position_x, position_y):
         """Returns the coordinates of the square which contains the given position"""
         square_row = int(position_y // (SIM_HEIGHT/VSIM_NUM_ROWS))
@@ -25,9 +31,12 @@ class VisualMap:
         square_row, square_column = VisualMap.get_square(position_x, position_y)
         vsim_grid[square_row, square_column] = min(vsim_grid[square_row, square_column] + VSIM_CELL_WEIGHT, 1)  # Maximum value is 1
     
-    def update_map(vsim_grid):
+    def update_map(vsim_grid, photo_index):
         """Updates the map based on actual positions of cells"""
-        vsim_grid = VisualMap.generate_map(vsim_grid)
+        if photo_index == 0:
+            vsim_grid = VisualMap.generate_map(vsim_grid)
+        else:
+            vsim_grid = VisualMap.decay(vsim_grid)
         for cell in CELLS:
             VisualMap.update_square_value(cell.position_x, cell.position_y, vsim_grid)
         return vsim_grid

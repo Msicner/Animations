@@ -17,7 +17,8 @@ class Photo():
         """ Saves the image as a file """
         img = Image.fromarray(self.pixels)
         img.save(self.name)
-        print(f"Image {self.name} saved")
+        print(f"{self.name} saved\n")
+        print("-------------------------------------")
 
 
 def get_data() -> List[List[str]]:
@@ -30,10 +31,11 @@ def get_data() -> List[List[str]]:
         return lines
 
 
-def create_photos(data: List[List[str]]) -> None:
+def create_photos_from_csv(data: List[List[str]]) -> None:
     """ Saves multiple photos from list """
     for photo_index in range(FRAMES_COUNT + 1):
         photo = Photo(f'frame_{photo_index+1}.png')
+        print(f"Creating image {photo_index}") 
         # ---- SETTING VALUES OF EACH PIXEL ----
         for row in data[1:]:
             # - reformating string rgb values to List -
@@ -56,8 +58,24 @@ def create_photos(data: List[List[str]]) -> None:
             photo.pixels[position[0], position[1]] = values
         
         # ---- SAVING THE IMAGE ----
-        print(f"Saving photo {photo_index}")
+        print(f"Saving photo {photo_index + 2}")
         photo.save()
 
-data = get_data()
-create_photos(data)
+def create_photo(data, photo_index):
+    """Creates single photo based on values of pixels, not from csv"""
+    photo = Photo(f'frame_{photo_index+1}.png')
+    values = []
+    for row in range(VSIM_NUM_ROWS):
+        for column in range(VSIM_NUM_COLUMNS):
+            value = float(data[row, column]) * 255
+            values = [value, value, value]
+            # Setting the value of one pixel
+            photo.pixels[row, column] = values
+
+    # ---- SAVING THE IMAGE ----
+    print(f"Saving photo {photo_index + 1}")
+    photo.save()
+            
+
+# data = get_data()
+# create_photos_from_csv(data)

@@ -6,19 +6,31 @@ Variables for **visual** simulation(with colored squares) itself has prefix __VS
 ## Overall
 Rotation of the cell is measured in **degrees** from the horizontal line **pointing right**
 ## Detection
-Every cell has 3 sensors in front of it in the distance __SENSOR_DISTANCE__. First is in the **same direction as the rotation** of the cell. Other two sensors are (+) or (-) __SENSOR_ANGLE__. Every sensors asks the value of the square on its position and cell turns in the **direction of the ones with the highest value**(=brightest). If values of two squares are equal, then the direction is random in range (__-SENSOR_ANGLE__;__+SENSOR_ANGLE__). Simualtion has edge of 1 pixel where there can be no sensor.
+Every cell has 3 sensors in front of it in the distance __SENSOR_DISTANCE__. First is in the **same direction as the rotation** of the cell. Other two sensors are (+) or (-) __SENSOR_ANGLE__. Every sensors asks the value of the square on its position and cell turns in the **direction of the ones with the highest value**(=brightest). If values of two squares are equal, then the direction is random in range (__-SENSOR_ANGLE__;__+SENSOR_ANGLE__).
 
 # Visual simulation
-Visual grid is defined as **list of rows** (in a from of lists) which has same number of elements as the number of columns in visual simulation.
+Visual grid is defined as **numpy array** in a shape of (__VSIM_NUM_ROWS__, __VSIM_NUM_COLUMNS__).
 Every single element shows the **brightness of the square** and it's value is between __0 and 1__
-## Difuse
-We have to find a way, how to add some value to specific squares according to their distance from another. You can do this by finding row and column index for each of them and then looking for this specific position in the list of squares and adding the value to it. But there is maybe some more effective way using the sum of matricies, but it takes more space in memory (because of creating another list) and I am not sure, if this will speed up the whole process.
 ## Decay
-I am not sure, but I think, it is enough to just substract some value form every square after the difuse phase.
+It is done by simply substracting __VSIM_DECAY__ from the array and restricting max value to 1 and min value to 0.
+## Difuse
+Not implemented yet.
+Possible way to implement it is to set value for every square individually depending on its neighbours.
+
+# CSV writing
+For saving memory, defaulty only the last state of visual map is written into cvs file. Constant __RGB_IN_CVS__ is defaultly set to false, which means, data in csv are stored just for chromatic photo. If you want to operate with colors of the pixels. Then you need to set value of this variable to true.
+# Creating image
+Image is defaultly created for every state. Every pixel of the photo is set to the value of corresponding square in __vsim_grid__. Pixels has RGB value, so you can also create data with different RGB data to change colors of individual pixels in the photo. Colorization is not implemented yet. 
+# AstroPi implementation
+We want to simulate some kind of real particle system. So we will use following measurements for following variables in the simulation. But first you need to create some file with measured data and input this file to the simulation. There should be value of every constant for every individual frame.
+## Temperature
+Changes the energy of particles → speed of the particles
+Higher temperature means higher speed
+## Photos
+Sets the initial state of the __vsim_grid__ of the simulation. First you need to create grayscale of the photo, then convert it into csv_file and then use this csv file to set value of vsim_grid
+## Acceleration
+Causes the movement of the camera → synchronized movement of the particles and vsim_grid
+## Pressure
+Not implemented yet, but it should press particles together.
 
 # Conclusion
-5/19/2022 - 5 000 000 → 107s to generate rotation and update visual map one time
-It look like linear realtion between the number of cells and time. Number of squares in visual map almost doesn't affect the simulation runtime.
-
-# Posibilities
-You can rewrite whole code in a form of matricies, which can possibly speed up the whole proces.
