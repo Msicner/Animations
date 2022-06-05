@@ -1,3 +1,4 @@
+from importlib.resources import path
 import numpy as np
 from PIL import Image
 import csv
@@ -16,7 +17,7 @@ class Photo():
     def save(self):
         """ Saves the image as a file """
         img = Image.fromarray(self.pixels)
-        img.save(self.name)
+        img.save(f"C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Photos\\{self.name}")
         print(f"{self.name} saved\n")
         print("-------------------------------------")
 

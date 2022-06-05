@@ -1,8 +1,12 @@
+# Data constants
 CSV_FILE_PATH: str = 'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Physarum\\vis_map.csv'
+DATA_FOLDER: str = 'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\testing_data\\'
+# Durinf final testing, change 'testing data' to 'cm_pi'
+SAVE_DATA_FOLDER: str = 'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\data_for_simulation'
 
 # Constants of cells
 CELLS: list = []
-NUM_CELLS: int = 6000
+NUM_CELLS: int = 6000 # 15% of the image area
 
 # Simulation dimensions
 SIM_WIDTH: int = 200
@@ -21,4 +25,4 @@ VSIM_DECAY: float = VSIM_CELL_WEIGHT / VSIM_LIFETIME
 RGB_IN_CSV: bool = False
 
 # Visualization
-FRAMES_COUNT: int = 500
+FRAMES_COUNT: int = 2
