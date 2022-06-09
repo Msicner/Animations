@@ -68,6 +68,5 @@ class CellSimulation:
             cell.position_x, cell.position_y = CellSimulation.add_polar_vector(cell.position_x, cell.position_y, cell.rotation, SPEED)  # Moving the cell
         for cell in CELLS:
             CellSimulation.rotate_cell(cell, vsim_grid)  # Rotating the cell
-        vsim_grid = VisualMap.update_map(vsim_grid, photo_index)
         return vsim_grid
         

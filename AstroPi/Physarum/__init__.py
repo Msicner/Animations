@@ -8,8 +8,10 @@ from visual_map import VisualMap
 from cell_simulation import CellSimulation
 from csv_writing import CSVFileWriter
 from create_image import create_photo
+from create_array import create_array
 
 """Initializes whole simulation"""
+print("Initializing grid")
 start_time = time()
 vsim_grid = np.zeros((VSIM_NUM_ROWS, VSIM_NUM_COLUMNS))
 CSVFileWriter.initialize_csv()
@@ -29,6 +31,12 @@ for cell in range(NUM_CELLS):
 for photo_index in range(FRAMES_COUNT):
     print(f"Building frame {photo_index + 1} of {FRAMES_COUNT}")
     vsim_grid = CellSimulation.update_simulation(vsim_grid, photo_index)
+    if photo_index == 0:  # photo_index % PHOTO_DURATION == 0:  # Every 10th frame, set the simulation according to photo
+        print(f"Setting vsim_grid for frame {photo_index + 1}")
+        vsim_grid = create_array(IMAGES_NAMES[int(photo_index / PHOTO_DURATION)]) * PHOTO_WEIGHT
+        print("vsim_grid has been set")
+    else:
+        vsim_grid = VisualMap.update_map(vsim_grid, photo_index)
     create_photo(vsim_grid, photo_index)
 
 """Writing vsim_grid of the last frame into csv"""
