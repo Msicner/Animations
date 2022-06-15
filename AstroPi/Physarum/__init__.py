@@ -31,7 +31,7 @@ for cell in range(NUM_CELLS):
 for photo_index in range(FRAMES_COUNT):
     print(f"Building frame {photo_index + 1} of {FRAMES_COUNT}")
     vsim_grid = CellSimulation.update_simulation(vsim_grid, photo_index)
-    if photo_index == 0:  # photo_index % PHOTO_DURATION == 0:  # Every 10th frame, set the simulation according to photo
+    if photo_index == 0 and BASED_ON_PHOTOS == True:  # photo_index % PHOTO_DURATION == 0:  # Every 10th frame, set the simulation according to photo
         print(f"Setting vsim_grid for frame {photo_index + 1}")
         vsim_grid = create_array(IMAGES_NAMES[int(photo_index / PHOTO_DURATION)]) * PHOTO_WEIGHT
         print("vsim_grid has been set")

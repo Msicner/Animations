@@ -1,5 +1,5 @@
 from math import sin, cos, tan
-from random import randrange
+from random import randrange, choice
 
 from visual_map import VisualMap
 from cell import Cell
@@ -51,17 +51,14 @@ class CellSimulation:
             SENSOR_DISTANCE)
         right_sensor_value = VisualMap.get_square_value(right_sensor_position_x, right_sensor_position_y, vsim_grid)
 
-        if right_sensor_value == left_sensor_value:
-            self.rotation = CellSimulation.check_angle_value(self.rotation + randrange(-ROTATE_ANGLE, ROTATE_ANGLE))  # Some sensors has the same value
-        elif front_sensor_value > right_sensor_value:
-            if front_sensor_value > left_sensor_value:
-                self.rotation += 0  # Front sensor has greatest value
-            elif front_sensor_value < left_sensor_value:    
-                self.rotation = CellSimulation.check_angle_value(self.rotation + ROTATE_ANGLE) # Left sensor has greatest value
-        elif right_sensor_value > left_sensor_value:
-            self.rotation = CellSimulation.check_angle_value(self.rotation - ROTATE_ANGLE) # Right sensor has the greatest value
-        elif left_sensor_value > front_sensor_value:
-            self.rotation = CellSimulation.check_angle_value(self.rotation + ROTATE_ANGLE)  # Left sensor has greatest value
+        if front_sensor_value > left_sensor_value and front_sensor_value > right_sensor_value:
+            self.rotation += 0  # continue with the same rotation
+        elif front_sensor_value < left_sensor_value and front_sensor_value < right_sensor_value:
+            self.rotation = CellSimulation.check_angle_value(self.rotation + choice([-1, 1]) * ROTATE_ANGLE)  # self.rotation + randrange(-ROTATE_ANGLE, ROTATE_ANGLE)  |  continue with random rotation
+        elif left_sensor_value < right_sensor_value:
+            self.rotation = CellSimulation.check_angle_value(self.rotation - ROTATE_ANGLE)  # right sensor has greatest value → turns right
+        elif left_sensor_value > right_sensor_value:
+            self.rotation = CellSimulation.check_angle_value(self.rotation + ROTATE_ANGLE)  # left sensor has greates value → turns left
 
     def update_simulation(vsim_grid, photo_index):
         for cell in CELLS:

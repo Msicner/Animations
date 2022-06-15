@@ -1,15 +1,3 @@
-from os import listdir
-
-""" Data constants """
-CSV_FILE_PATH: str = 'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Physarum\\vis_map.csv'
-DATA_FOLDER: str = 'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\testing_data\\'  # During final testing, change 'testing data' to 'cm_pi'
-SAVE_DATA_FOLDER: str = 'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\data_for_simulation'
-IMAGES_NAMES: list = []
-for image in listdir(DATA_FOLDER):
-    if (image.endswith(".jpg")):
-        IMAGES_NAMES.append(image)
-PHOTO_WEIGHT: float = 0.004
-PHOTO_DURATION: int = 20
 BASED_ON_PHOTOS: bool = False
 
 """ Constants of cells """

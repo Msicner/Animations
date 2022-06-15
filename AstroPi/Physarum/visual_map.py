@@ -14,6 +14,20 @@ class VisualMap:
         vsim_grid = np.clip(vsim_grid, 0, 1)
         return vsim_grid
 
+    def diffuse(vsim_grid):
+        """Sets the value of every square according to value of the squares around"""
+        for row in range(VSIM_NUM_ROWS):
+            for column in range(VSIM_NUM_COLUMNS):
+                if row == VSIM_NUM_ROWS - 1 and column == VSIM_NUM_COLUMNS - 1:
+                    vsim_grid[row, column] = (vsim_grid[0, column] + vsim_grid[row - 1, column] + vsim_grid[row, 0] + vsim_grid[row, column - 1] + vsim_grid[row, column]) / 5
+                elif row == VSIM_NUM_ROWS - 1:
+                    vsim_grid[row, column] = (vsim_grid[0, column] + vsim_grid[row - 1, column] + vsim_grid[row, column + 1] + vsim_grid[row, column - 1] + vsim_grid[row, column]) / 5
+                elif column == VSIM_NUM_COLUMNS - 1:
+                    vsim_grid[row, column] = (vsim_grid[row, column] + vsim_grid[row - 1, column] + vsim_grid[row, 0] + vsim_grid[row, column - 1] + vsim_grid[row, column]) / 5
+                else:
+                    vsim_grid[row, column] = (vsim_grid[row + 1, column] + vsim_grid[row - 1, column] + vsim_grid[row, column + 1] + vsim_grid[row, column - 1] + vsim_grid[row, column]) / 5
+        return vsim_grid
+
     def get_square(position_x, position_y):
         """Returns the coordinates of the square which contains the given position"""
         square_row = int(position_y // (SIM_HEIGHT/VSIM_NUM_ROWS))
@@ -36,6 +50,7 @@ class VisualMap:
         if photo_index == 0:
             vsim_grid = VisualMap.generate_map(vsim_grid)
         else:
+            # vsim_grid = VisualMap.diffuse(vsim_grid)  -  There should be diffusion, but it looks better without it
             vsim_grid = VisualMap.decay(vsim_grid)
         for cell in CELLS:
             VisualMap.update_square_value(cell.position_x, cell.position_y, vsim_grid)
