@@ -3,6 +3,7 @@ import numpy as np
 from PIL import Image
 import csv
 from typing import List
+import os
 
 from constants import *
 
@@ -14,10 +15,13 @@ class Photo():
         self.name = name
         self.pixels = np.zeros([VSIM_NUM_ROWS, VSIM_NUM_COLUMNS, 3], dtype=np.uint8)
 
-    def save(self):
+    def save(self, folder_name):
         """ Saves the image as a file """
         img = Image.fromarray(self.pixels)
-        img.save(f"C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Photos\\{self.name}")
+        dir = os.path.join("C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Photos", folder_name)
+        if not os.path.exists(dir):
+            os.mkdir(dir)
+        img.save(f"C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Photos\\{folder_name}\\{self.name}")
         print(f"{self.name} saved\n")
         print("-------------------------------------")
 
@@ -62,7 +66,7 @@ def create_photos_from_csv(data: List[List[str]]) -> None:
         print(f"Saving photo {photo_index + 2}")
         photo.save()
 
-def create_photo(data, photo_index):
+def create_photo(data, photo_index, folder: str = "1"):
     """Creates single photo based on values of pixels, not from csv"""
     photo = Photo(f'frame_{photo_index+1}.png')
     values = []
@@ -75,7 +79,7 @@ def create_photo(data, photo_index):
 
     # ---- SAVING THE IMAGE ----
     print(f"Saving photo {photo_index + 1}")
-    photo.save()
+    photo.save(folder)
             
 
 # data = get_data()

@@ -50,7 +50,7 @@ class VisualMap:
         if photo_index == 0:
             vsim_grid = VisualMap.generate_map(vsim_grid)
         else:
-            # vsim_grid = VisualMap.diffuse(vsim_grid)  -  There should be diffusion, but it looks better without it
+            vsim_grid = VisualMap.diffuse(vsim_grid)
             vsim_grid = VisualMap.decay(vsim_grid)
         for cell in CELLS:
             VisualMap.update_square_value(cell.position_x, cell.position_y, vsim_grid)

@@ -33,4 +33,19 @@ Causes the movement of the camera → synchronized movement of the particles and
 ## Pressure
 Not implemented yet, but it should press particles together.
 
-# Conclusion
+# Constants
+## Num cells(NuC)
+Affects the brightness of the simulation
+It should be in a range of 3 - 15% of the area of the simulation
+Higher NuC means brighter the simulation 
+## Speed(S)
+For resolution 200x200 it should be around 1
+To high speed creates dots instead of lines
+## Sensor distance(SD)
+Narrows the lines
+For bigger resolution, when you increase it, you get "lower resolution" or density of the lines → faster change
+## Sensor angle(SA)
+## Rotate angle(RA)
+## Lifetime(LF)
+## Cell weight(CeW)
+Affects the brightness of the simulation

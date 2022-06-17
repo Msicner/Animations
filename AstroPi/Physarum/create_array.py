@@ -1,10 +1,8 @@
 import PIL
 import numpy
-from numpy import array, asarray
+from numpy import asarray
 from PIL import Image
-from typing import List, Tuple
 import csv
-from os import listdir
 
 from constants import *
 
@@ -12,7 +10,8 @@ np = numpy
 table = {}
 def get_image_array(name: str):
     # load the image
-    image = Image.open(DATA_FOLDER + name)
+    path = str(DATA_FOLDER + name)
+    image = Image.open(path)
     grayscale_image = image.convert('L')
     data = asarray(grayscale_image)
     return data
