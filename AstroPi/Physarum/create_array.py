@@ -3,6 +3,7 @@ import numpy
 from numpy import asarray
 from PIL import Image
 import csv
+import os
 
 from constants import *
 
@@ -29,7 +30,7 @@ def create_array(image_name: str, write_data_to_csv: bool = False):
     return data
 
 def write_data(data_to_write, frame_name):
-    with open(f'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\data_for_simulation\\{frame_name}_data.csv', 'w', buffering=1, newline='') as file:
+    with open(os.path.join(SAVE_DATA_FOLDER, f'{frame_name}_data.csv'), 'w', buffering=1, newline='') as file:
         writer = csv.writer(file)
         header = ['pixels y x', f'{frame_name}']
         writer.writerow(header)
@@ -39,5 +40,3 @@ def write_data(data_to_write, frame_name):
                 row_data.append(f'({row}, {column})')
                 row_data.append(f"({data_to_write[row, column]})")
                 writer.writerow(row_data)
-
-create_array(IMAGES_NAMES[0])
