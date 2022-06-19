@@ -7,9 +7,6 @@ import os
 
 from constants import *
 
-PATH_TO_DATA = 'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Physarum\\vis_map.csv'
-
-
 class Photo():
     def __init__(self, name: str) -> None:
         self.name = name
@@ -18,17 +15,17 @@ class Photo():
     def save(self, folder_name):
         """ Saves the image as a file """
         img = Image.fromarray(self.pixels)
-        dir = os.path.join("C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Photos", folder_name)
+        dir = os.path.join(SAVE_PHOTOS_FOLDER, folder_name)
         if not os.path.exists(dir):
             os.mkdir(dir)
-        img.save(f"C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Photos\\{folder_name}\\{self.name}")
+        img.save(os.path.join(SAVE_PHOTOS_FOLDER, folder_name, self.name))
         print(f"{self.name} saved\n")
         print("-------------------------------------")
 
 
 def get_data() -> List[List[str]]:
     """ Extracts data from csv file """
-    with open(PATH_TO_DATA, 'r') as file:
+    with open(CSV_FILE_PATH, 'r') as file:
         reader = csv.reader(file)
         lines = []
         for row in reader:
