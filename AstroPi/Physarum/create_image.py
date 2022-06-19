@@ -77,7 +77,4 @@ def create_photo(data, photo_index, folder: str = "1"):
     # ---- SAVING THE IMAGE ----
     print(f"Saving photo {photo_index + 1}")
     photo.save(folder)
-            
-
-# data = get_data()
-# create_photos_from_csv(data)
+    
