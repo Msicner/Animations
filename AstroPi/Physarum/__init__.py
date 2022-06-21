@@ -39,7 +39,7 @@ for frame in IMAGES_NAMES:
         vsim_grid = CellSimulation.update_simulation(vsim_grid, speed, sensor_distance, rotate_angle)
         if photo_index == 0 and BASED_ON_PHOTOS == True:  # photo_index % PHOTO_DURATION == 0:  # Every 10th frame, set the simulation according to photo
             print(f"Setting vsim_grid for frame {photo_index + 1}")
-            vsim_grid = create_array(IMAGES_NAMES[0]) * PHOTO_WEIGHT  # You need to change it if you want to generate multiple photos
+            vsim_grid = create_array(frame) * PHOTO_WEIGHT  # You need to change it if you want to generate multiple photos
             print("vsim_grid has been set")
             photo_number = int(frame.replace("image", "").replace(".jpg", ""))
             speed = MEASUREMENTS_DATA[photo_number][0]
