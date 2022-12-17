@@ -7,9 +7,6 @@ import os
 
 from constants import *
 
-PATH_TO_DATA = 'C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Physarum\\vis_map.csv'
-
-
 class Photo():
     def __init__(self, name: str) -> None:
         self.name = name
@@ -28,7 +25,7 @@ class Photo():
 
 def get_data() -> List[List[str]]:
     """ Extracts data from csv file """
-    with open(PATH_TO_DATA, 'r') as file:
+    with open(CSV_FILE_PATH, 'r') as file:
         reader = csv.reader(file)
         lines = []
         for row in reader:
@@ -80,7 +77,4 @@ def create_photo(data, photo_index, folder: str = "1"):
     # ---- SAVING THE IMAGE ----
     print(f"Saving photo {photo_index + 1}")
     photo.save(folder)
-            
-
-# data = get_data()
-# create_photos_from_csv(data)
+    
