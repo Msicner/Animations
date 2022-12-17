@@ -18,10 +18,10 @@ class Photo():
     def save(self, folder_name):
         """ Saves the image as a file """
         img = Image.fromarray(self.pixels)
-        dir = os.path.join("C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Photos", folder_name)
+        dir = os.path.join("H:\\Sdílené disky\\AstroPi Hackatrons\\2021 2022\\data\\sequences\\Photos - Physarum", folder_name)
         if not os.path.exists(dir):
             os.mkdir(dir)
-        img.save(f"C:\\Users\\Matej\\Documents\\Programming\\Projects_git\\Animations\\AstroPi\\Photos\\{folder_name}\\{self.name}")
+        img.save(f"H:\\Sdílené disky\\AstroPi Hackatrons\\2021 2022\\data\\sequences\\Photos - Physarum\\{folder_name}\\{self.name}")
         print(f"{self.name} saved\n")
         print("-------------------------------------")
 

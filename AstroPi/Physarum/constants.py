@@ -14,7 +14,7 @@ MEASUREMENTS_DATA: dict = load_data(str(DATA_FOLDER + "data.csv"))
 
 """ Constants of cells """
 CELLS: list = []
-NUM_CELLS: int = 120000  # 3 - 15% of the image area
+NUM_CELLS: int = 120000
 
 """ Simulation dimensions """
 SIM_WIDTH: int = 1080
@@ -27,8 +27,8 @@ rotate_angle: int = 45
 """Visual simulation"""
 VSIM_NUM_ROWS: int = SIM_HEIGHT
 VSIM_NUM_COLUMNS: int = SIM_WIDTH
-VSIM_CELL_WEIGHT: float = 0.1#0.03
-VSIM_LIFETIME: float = 9.0  # Describes how many frames you can see the cell in vsim_grid
+VSIM_CELL_WEIGHT: float = 0.1
+VSIM_LIFETIME: float = 9.0
 VSIM_DECAY: float = VSIM_CELL_WEIGHT / VSIM_LIFETIME
 RGB_IN_CSV: bool = False
 
