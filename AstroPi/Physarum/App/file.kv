@@ -44,13 +44,13 @@
                 multiline: False
            
             Label:
-                text: 'NUM_CELLS'
+                text: 'Number of moving cells'
             TextInput:
                 id: NUM_CELLS
                 multiline: False
             
             Label:
-                text: 'Number of frames'
+                text: 'Number of generated frames'
             TextInput:
                 id: FRAMES_COUNT
                 multiline: False
@@ -85,61 +85,61 @@
             row_default_height: 30
             
             Label:
-                text: 'PHOTO_WEIGHT'
+                text: 'Photo imporatnce (0 - 0.1)'
             TextInput:
                 id: PHOTO_WEIGHT
                 multiline: False
             
             Label:
-                text: 'PHOTO_DURATION'
+                text: 'How many frames does the photo last'
             TextInput:
                 id: PHOTO_DURATION
                 multiline: False
             
             Label:
-                text: 'BASED_ON_PHOTOS'
+                text: 'Do you want to use initial photo (True/False)'
             TextInput:
                 id: BASED_ON_PHOTOS
                 multiline: False
             
             Label:
-                text: 'SPEED'
+                text: 'How fast do cells move [px/s]'
             TextInput:
                 id: SPEED
                 multiline: False
             
             Label:
-                text: 'SENSOR DISTANCE'
+                text: 'How far do the cells "see"? [px]'
             TextInput:
                 id: SENSOR_DISTANCE
                 multiline: False
             
             Label:
-                text: 'SENSOR_ANGLE'
+                text: 'How "wide" do the cells see? [deg]'
             TextInput:
                 id: SENSOR_ANGLE
                 multiline: False
             
             Label:
-                text: 'ROTATE_ANGLE'
+                text: 'How much do the cells rotate? [deg]'
             TextInput:
                 id: ROTATE_ANGLE
                 multiline: False
             
             Label:
-                text: 'VSIM_CELL_WEIGHT'
+                text: 'Importance of other cells (0 - 1)'
             TextInput:
                 id: VSIM_CELL_WEIGHT
                 multiline: False
             
             Label:
-                text: 'VSIM_LIFETIME'
+                text: 'How many frames do the cells last'
             TextInput:
                 id: VSIM_LIFETIME
                 multiline: False
 
             Button:
-                text: 'submit'
+                text: 'Submit'
                 on_press: app.submit()
             Button:
                 text: 'Reset'
@@ -190,7 +190,7 @@
                 size_hint_x: 0.2
 
             Button:
-                text: 'submit'
+                text: 'Submit'
                 on_press: app.submit()
             Button:
                 text: 'Reset'
@@ -210,55 +210,55 @@
                 text: 'Necessary'
             Label:
                 id: series_name_label
-                text: 'Series name: NOT SET'
+                text: 'Sequence name: NOT SET'
             Label:
                 id: DATA_FOLDER_label
-                text: 'DATA FOLDER: NOT SET'
+                text: 'Folder with images: NOT SET'
             Label:
                 id: NUM_CELLS_label
-                text: 'NUM CELLS: NOT SET'
+                text: 'Number of moving cells: NOT SET'
             Label:
                 id: FRAMES_COUNT_label
-                text: 'FRAMES COUNT: NOT SET'
+                text: 'Number of generated frames: NOT SET'
             Label:
                 id: SIM_HEIGHT_label
-                text: 'SIM HEIGHT: NOT SET'
+                text: 'Photo height: NOT SET'
             Label:
                 id: SIM_WIDTH_label
-                text: 'SIM WIDTH: NOT SET'
+                text: 'Photo width: NOT SET'
 
             Label:
                 text: 'Unnecessary'
             Label:
                 id: SAVE_DATA_FOLDER_label
-                text: 'SAVE DATA FOLDER: NOT SET'
+                text: 'Sequence export folder: NOT SET'
             Label:
                 id: PHOTO_WEIGHT_label
-                text: 'PHOTO WEIGHT: NOT SET'
+                text: 'Photo imporatnce: NOT SET'
             Label:
                 id: PHOTO_DURATION_label
-                text: 'PHOTO DURATION: NOT SET'
+                text: 'Photo lasts: NOT SET'
             Label:
                 id: BASED_ON_PHOTOS_label
-                text: 'BASED ON PHOTOS: NOT SET'
+                text: 'Initial photos(Y/N): NOT SET'
             Label:
                 id: SPEED_label
-                text: 'SPEED: NOT SET'
+                text: 'Cell speed: NOT SET'
             Label:
                 id: SENSOR_DISTANCE_label
-                text: 'SENSOR DISTANCE: NOT SET'
+                text: 'Sensor distance: NOT SET'
             Label:
                 id: SENSOR_ANGLE_label
-                text: 'SENSOR ANGLE: NOT SET'
+                text: 'Sensor angle: NOT SET'
             Label:
                 id: ROTATE_ANGLE_label
-                text: 'ROTATE_ANGLE: NOT SET'
+                text: 'Rotate angle: NOT SET'
             Label:
                 id: VSIM_CELL_WEIGHT_label
-                text: 'VSIM CELL WEIGHT: NOT SET'
+                text: 'Importance of other cells: NOT SET'
             Label:
                 id: VSIM_LIFETIME_label
-                text: 'VSIM LIFETIME: NOT SET'
+                text: 'Cell last: NOT SET'
 
             Button:
                 text: 'Generate'
