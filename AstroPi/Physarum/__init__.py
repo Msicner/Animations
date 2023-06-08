@@ -42,9 +42,9 @@ for frame in IMAGES_NAMES:
             vsim_grid = create_array(frame) * PHOTO_WEIGHT  # You need to change it if you want to generate multiple photos
             print("vsim_grid has been set")
             photo_number = int(frame.replace("image", "").replace(".jpg", ""))
-            speed = MEASUREMENTS_DATA[photo_number][0]
-            sensor_distance = MEASUREMENTS_DATA[photo_number][1]
-            rotate_angle = MEASUREMENTS_DATA[photo_number][2]
+            speed = SPEED #MEASUREMENTS_DATA[photo_number][0]
+            sensor_distance = sensor_distance #MEASUREMENTS_DATA[photo_number][1]
+            rotate_angle = rotate_angle #MEASUREMENTS_DATA[photo_number][2]
             print(speed, sensor_distance, rotate_angle)
         else:
             vsim_grid = VisualMap.update_map(vsim_grid, photo_index)

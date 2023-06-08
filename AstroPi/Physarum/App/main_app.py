@@ -3,8 +3,9 @@ from kivy.uix.popup import Popup
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.core.window import Window
+import csv
+import os
 Window.size = (800, 700)
-
 
 class FileChoosePopup(Popup):
     load = ObjectProperty()
@@ -72,6 +73,14 @@ class FileApp(App):
         if FRAMES_COUNT_value:
             self.root.ids.FRAMES_COUNT_label.text = f"Number of frames: {FRAMES_COUNT_value}"
         
+        SIM_WIDTH_value = self.root.ids.SIM_WIDTH.text
+        if SIM_WIDTH_value:
+            self.root.ids.SIM_WIDTH_label.text = f"Photo width: {SIM_WIDTH_value}"
+        
+        SIM_HEIGHT_value = self.root.ids.SIM_HEIGHT.text
+        if SIM_HEIGHT_value:
+            self.root.ids.SIM_HEIGHT_label.text = f"Photo height: {SIM_HEIGHT_value}"
+        
         """ Advanced """
         PHOTO_WEIGHT_value = self.root.ids.PHOTO_WEIGHT.text
         if PHOTO_WEIGHT_value:
@@ -115,5 +124,93 @@ class FileApp(App):
 
     def generate(self):
         print("I want to generate sequence")
+        filepath = str(os.path.realpath(__file__)).replace("main_app.py", "data.csv")  #os.path.join(data.replace("Data source folder: ", ""), "data.csv")
+        with open(filepath, 'w', newline='\n') as csvfile:
+            writer = csv.writer(csvfile)
+            
+            if self.root.ids.series_name_label.text:
+                writer.writerow([self.root.ids.series_name_label.text])
+            else:
+                writer.writerow([f"series_name: 0"])
+            
+            if self.root.ids.DATA_FOLDER_label.text:
+                writer.writerow([self.root.ids.DATA_FOLDER_label.text])
+            else:
+                writer.writerow([f"DATA_FOLDER: 0"])
+
+            if self.root.ids.SAVE_DATA_FOLDER_label.text:
+                writer.writerow([self.root.ids.SAVE_DATA_FOLDER_label.text])
+            else:
+                writer.writerow([f"SAVE_DATA_FOLDER: 0"])
+            
+            if self.root.ids.NUM_CELLS_label.text:
+                writer.writerow([self.root.ids.NUM_CELLS_label.text])
+            else:
+                writer.writerow([f"NUM_CELLS: 0"])
+            
+            if self.root.ids.FRAMES_COUNT_label.text:
+                writer.writerow([self.root.ids.FRAMES_COUNT_label.text])
+            else:
+                writer.writerow([f"FRAMES_COUNT: 0"])
+            
+            if self.root.ids.SIM_WIDTH_label.text:
+                writer.writerow([self.root.ids.SIM_WIDTH_label.text])
+            else:
+                writer.writerow([f"SIM_WIDTH: 0"])
+            
+            if self.root.ids.SIM_HEIGHT_label.text:
+                writer.writerow([self.root.ids.SIM_HEIGHT_label.text])
+            else:
+                writer.writerow([f"SIM_HEIGHT: 0"])
+            
+            # ---------------------------
+
+            if self.root.ids.PHOTO_WEIGHT_label.text:
+                writer.writerow([self.root.ids.PHOTO_WEIGHT_label.text])
+            else:
+                writer.writerow([f"PHOTO_WEIGHT: 0"])
+            
+            if self.root.ids.PHOTO_DURATION_label.text:
+                writer.writerow([self.root.ids.PHOTO_DURATION_label.text])
+            else:
+                writer.writerow([f"PHOTO_DURATION: 0"])
+
+            if self.root.ids.BASED_ON_PHOTOS_label.text:
+                writer.writerow([self.root.ids.BASED_ON_PHOTOS_label.text])
+            else:
+                writer.writerow([f"BASED_ON_PHOTOS: 0"])
+
+            if self.root.ids.SPEED_label.text:
+                writer.writerow([self.root.ids.SPEED_label.text])
+            else:
+                writer.writerow([f"SPEED: 0"])
+
+            if self.root.ids.SENSOR_DISTANCE_label.text:
+                writer.writerow([self.root.ids.SENSOR_DISTANCE_label.text])
+            else:
+                writer.writerow([f"SENSOR_DISTANCE: 0"])
+
+            if self.root.ids.SENSOR_ANGLE_label.text:
+                writer.writerow([self.root.ids.SENSOR_ANGLE_label.text])
+            else:
+                writer.writerow([f"SENSOR_ANGLE: 0"])
+
+            if self.root.ids.ROTATE_ANGLE_label.text:
+                writer.writerow([self.root.ids.ROTATE_ANGLE_label.text])
+            else:
+                writer.writerow([f"ROTATE_ANGLE: 0"])
+
+            if self.root.ids.VSIM_CELL_WEIGHT_label.text:
+                writer.writerow([self.root.ids.VSIM_CELL_WEIGHT_label.text])
+            else:
+                writer.writerow([f"VSIM_CELL_WEIGHT: 0"])
+            
+            if self.root.ids.VSIM_LIFETIME_label.text:
+                writer.writerow([self.root.ids.VSIM_LIFETIME_label.text])
+            else:
+                writer.writerow([f"VSIM_LIFETIME: 0"])
+            
+        print("All have been writen and saved")
+
 
 FileApp().run()

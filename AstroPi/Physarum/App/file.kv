@@ -1,5 +1,5 @@
 <FileChoosePopup>:
-    title: "Choose a .CSV File"
+    title: "Choose a folder"
     size_hint: .9, .9
     auto_dismiss: False
 
@@ -7,6 +7,9 @@
         orientation: "vertical"
         FileChooser:
             id: filechooser
+            dirselect: True
+            path:
+                filechooser.path
             FileChooserIconLayout
 
         BoxLayout:
@@ -50,6 +53,18 @@
                 text: 'Number of frames'
             TextInput:
                 id: FRAMES_COUNT
+                multiline: False
+
+            Label:
+                text: 'Photo width[px] - must be same for all photos'
+            TextInput:
+                id: SIM_WIDTH
+                multiline: False
+
+            Label:
+                text: 'Photo height[px] - must be same for all photos'
+            TextInput:
+                id: SIM_HEIGHT
                 multiline: False
             
             
@@ -145,7 +160,7 @@
                 text: ''
                 size_hint_x: 0.2
             Button:
-                text: 'Data source folder'
+                text: 'Folder with images'
                 size_hint_x: 0.2
                 on_press: root.open_popup_source()
             TextInput:
@@ -205,6 +220,12 @@
             Label:
                 id: FRAMES_COUNT_label
                 text: 'FRAMES COUNT: NOT SET'
+            Label:
+                id: SIM_HEIGHT_label
+                text: 'SIM HEIGHT: NOT SET'
+            Label:
+                id: SIM_WIDTH_label
+                text: 'SIM WIDTH: NOT SET'
 
             Label:
                 text: 'Unnecessary'

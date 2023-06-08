@@ -4,6 +4,7 @@ from PIL import Image
 import csv
 from typing import List
 import os
+from constants import SAVE_DATA_FOLDER
 
 from constants import *
 
@@ -15,10 +16,10 @@ class Photo():
     def save(self, folder_name):
         """ Saves the image as a file """
         img = Image.fromarray(self.pixels)
-        dir = os.path.join("H:\\Sdílené disky\\AstroPi Hackatrons\\2021 2022\\data\\sequences\\Photos - Physarum", folder_name)
+        dir = os.path.join(SAVE_PHOTOS_FOLDER, folder_name) # "H:\\Sdílené disky\\AstroPi Hackatrons\\2021 2022\\data\\sequences\\Photos - Physarum"
         if not os.path.exists(dir):
             os.mkdir(dir)
-        img.save(f"H:\\Sdílené disky\\AstroPi Hackatrons\\2021 2022\\data\\sequences\\Photos - Physarum\\{folder_name}\\{self.name}")
+        img.save(f"{SAVE_PHOTOS_FOLDER}\\{folder_name}\\{self.name}") # H:\\Sdílené disky\\AstroPi Hackatrons\\2021 2022\\data\\sequences\\Photos - Physarum
         print(f"{self.name} saved\n")
         print("-------------------------------------")
 
